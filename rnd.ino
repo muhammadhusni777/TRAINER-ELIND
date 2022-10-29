@@ -1,3 +1,10 @@
+/*  available adc
+ *  GPIO36, GPIO37, GPIO38, GPIO39, GPIO32, GPIO33, GPIO34 and GPIO35.
+ * 
+ * 
+ */
+
+
 #include <WiFi.h>
 #include <PubSubClient.h>
 #include <Wire.h>
@@ -55,7 +62,14 @@ int buzzer = 5;//buzzer
 
 int analog;
 
+int mic_pin = 39; // mic
+
+int ldr_pin = 35; //ldr
+
+int pot_pin = 34;//pot pin
 int seven_segment_value;
+
+int dht_pin = 25;
 
 // Create display object of type TM1637Display
 TM1637Display display = TM1637Display(CLK, DIO);
@@ -216,7 +230,7 @@ void loop() {
     lastMsg = now;
     
     //kirim data 
-    analog = analogRead(34);   
+    analog = analogRead(35);   
     char analog_send[8];
     dtostrf(analog, 1, 2, analog_send);
     
