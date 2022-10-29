@@ -14,7 +14,16 @@
 // Set the LCD address to 0x27 for a 16 chars and 2 line display
 LiquidCrystal_I2C lcd(0x27, 16, 2);
 
+#include "DHT.h"
 
+#define DHTPIN 16 
+
+#define DHTTYPE DHT11 
+
+
+DHT dht(DHTPIN, DHTTYPE);
+
+float t;
 
 
 // Replace the next variables with your SSID/Password combination
@@ -107,6 +116,8 @@ void setup() {
   
   // Clear the display
   display.clear();  
+
+  dht.begin();
 }
 
 void setup_wifi() {
@@ -221,6 +232,7 @@ void loop() {
 
   ledcWrite(0, pwm_value);
 
+  t = dht.readTemperature();
 
   display.showNumberDec(seven_segment_value);
   
