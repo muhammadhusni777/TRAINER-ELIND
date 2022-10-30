@@ -13,7 +13,7 @@ Window {
     height: 600
 	maximumHeight : height
 	minimumHeight : height
-	title:"Job 7 : Menyalakan Led"
+	title:"Job 8 : Menyalakan RGB Led"
 	color : "#000212"
     visible: true
     flags: Qt.Dialog // Qt.WindowMaximized //
@@ -31,7 +31,7 @@ Window {
 	Text{
 	anchors.horizontalCenter: parent.horizontalCenter
 	y:10
-	text : "Job 7 : Led from PyQt5 Via MQTT" 
+	text : "Job 8 : Led from PyQt5 Via MQTT" 
 	color : "white"
 	font.pixelSize : 20
 	}
@@ -66,12 +66,13 @@ Window {
 		onClicked:{
 					if (button1.checked == true){
 					button1_color.color = "red" 
-					
+					slider1.visible = true 
 					}
 					
 					if (button1.checked == false){
 					button1_color.color = "blue" 
-					
+					slider1.visible = false
+					slider1.value = 0
 					}
 					
 					}
@@ -85,7 +86,7 @@ Window {
 			Text{
 				anchors.horizontalCenter: parent.horizontalCenter
 				y:10
-				text : "Led 1" 
+				text : "Led Red" 
 				color : "white"
 				font.pixelSize : 20
 			}
@@ -95,13 +96,25 @@ Window {
 		
     }
 	
+	Slider{
+	id : slider1
+	x: 90
+	y : 270
+	from : 0
+	to : 255
+	value : 0
+	width : 300
+	visible : false
+	
+	}
+	
 	
 	
 	
 	Button {
 		id : button2
 		x: 100
-		y : 300
+		y : 320
 		width : 250
 		height : 50
         checked: false
@@ -110,12 +123,13 @@ Window {
 		onClicked:{
 					if (button2.checked == true){
 					button2_color.color = "red" 
-					
+					slider2.visible = true
 					}
 					
 					if (button2.checked == false){
 					button2_color.color = "blue" 
-					
+					slider2.visible = false
+					slider2.value = 0
 					}
 					
 					}
@@ -129,7 +143,7 @@ Window {
 			Text{
 				anchors.horizontalCenter: parent.horizontalCenter
 				y:10
-				text : "Led 2" 
+				text : "Led Green" 
 				color : "white"
 				font.pixelSize : 20
 			}
@@ -139,12 +153,22 @@ Window {
 		
     }
 	
+	Slider{
+	id : slider2
+	x: 90
+	y : 390
+	from : 0
+	to : 255
+	value : 0
+	width : 300
+	visible : false
+	}
 	
 	
 	Button {
 		id : button3
 		x: 100
-		y : 400
+		y : 450
 		width : 250
 		height : 50
         checked: false
@@ -153,12 +177,13 @@ Window {
 		onClicked:{
 					if (button3.checked == true){
 					button3_color.color = "red" 
-					
+					slider3.visible = true
 					}
 					
 					if (button3.checked == false){
 					button3_color.color = "blue" 
-					
+					slider3.visible = false
+					slider3.value = 0
 					}
 					
 					}
@@ -172,7 +197,7 @@ Window {
 			Text{
 				anchors.horizontalCenter: parent.horizontalCenter
 				y:10
-				text : "Led 3" 
+				text : "Led Blue" 
 				color : "white"
 				font.pixelSize : 20
 			}
@@ -182,7 +207,16 @@ Window {
 		
     }
 	
-	
+	Slider{
+	id : slider3
+	x: 90
+	y : 520
+	from : 0
+	to : 255
+	value : 0
+	width : 300
+	visible : false
+	}
 	
 	
 	
@@ -192,9 +226,9 @@ Window {
 		repeat: true
 		running: true
 		onTriggered: {
-			backend.button1(button1.checked)
-			backend.button2(button2.checked)
-			backend.button3(button3.checked)
+			backend.slider1(slider1.value)
+			backend.slider2(slider2.value)
+			backend.slider3(slider3.value)
 		
 		}
 	}

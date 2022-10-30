@@ -4,18 +4,16 @@ import QtQuick.Controls 2.15
 import QtQuick.Controls.Styles 1.4
 import QtQuick.Extras 1.4
 import QtQuick.Extras.Private 1.0
-import SDK 1.0
-
 
 Window {
 	id : root
-	width: 400
+	width: 500
     maximumWidth : width
 	minimumWidth : width
-    height: 400
+    height: 600
 	maximumHeight : height
 	minimumHeight : height
-	title:"Job 4 : Membaca LDR"
+	title:"Job 9: Menyalakan 7 Segment Led"
 	color : "#000212"
     visible: true
     flags: Qt.Dialog // Qt.WindowMaximized //
@@ -33,7 +31,7 @@ Window {
 	Text{
 	anchors.horizontalCenter: parent.horizontalCenter
 	y:10
-	text : "Job 4 : LDR to PyQt5 Via MQTT" 
+	text : "Job 9 : 7 Segment from PyQt5 Via MQTT" 
 	color : "white"
 	font.pixelSize : 20
 	}
@@ -56,72 +54,48 @@ Window {
 	
 	}
 	
-	
-	Image{
+	Text{
 	anchors.horizontalCenter: parent.horizontalCenter
 	y:200
-	
-	width : 100
-	height : 100
-	source : "sun.png"
-	}
-	
-	Rectangle{
-	y : 120
-	width : 250
-	height : 250
-	anchors.horizontalCenter: parent.horizontalCenter
-	color : "transparent"
-	
-	RadialBar {
-				
-	        	id : radial2
-	            anchors.horizontalCenter: parent.horizontalCenter
-	            anchors.bottom: parent.bottom
-	            width: parent.width / 1.1
-	            height: width - (0.00000000001)
-	            penStyle: Qt.RoundCap
-	            progressColor: "blue"
-	            foregroundColor: "#04f8fa"
-	            dialWidth: 24
-
-				
-	            minValue: 0
-	            maxValue: 4096
-	           // value: text_val2
-	            
-	            textFont 
-	            {	
-					
-	                family: "Times New Roman"
-	                italic: false
-	                pointSize: 14
-	            }
-
-	            textColor: "black"
-				
-				
-	        }
-	
+	text :  "7 Segment Display :"
+	color : "white"
+	font.pixelSize : 40
 	}
 	
 	Text{
-	id : ldr_val
 	anchors.horizontalCenter: parent.horizontalCenter
-	y:340
-	text : radial2.value
-	color : "white"
-	font.pixelSize : 20
+	y:300
+	text :  (slider1.value).toFixed(0)
+	color : "gold"
+	font.pixelSize : 70
 	}
-    
+	
+	Slider{
+	id : slider1
+	anchors.horizontalCenter: parent.horizontalCenter
+	y : 400
+	from : 0
+	to : 9999
+	value : 0
+	width : 450
+	stepSize : 1
+	
+	}
+	
+	
+	
+	
+	
+	
+	
 	Timer{
 		id: gui_timer
-		interval: 50
+		interval: 1000
 		repeat: true
 		running: true
 		onTriggered: {
-		//ldr_val.text = backend.ldr_value()
-		radial2.value = backend.ldr_value()
+			backend.slider1(slider1.value)
+			
 		
 		}
 	}

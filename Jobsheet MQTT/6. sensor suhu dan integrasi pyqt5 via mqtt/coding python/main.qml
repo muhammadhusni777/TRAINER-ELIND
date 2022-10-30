@@ -13,7 +13,7 @@ Window {
     height: 600
 	maximumHeight : height
 	minimumHeight : height
-	title:"Job 5 : Membaca sensor suhu"
+	title:"Job 6 : Membaca sensor suhu"
 	color : "#000212"
     visible: true
     flags: Qt.Dialog // Qt.WindowMaximized //
@@ -31,7 +31,7 @@ Window {
 	Text{
 	anchors.horizontalCenter: parent.horizontalCenter
 	y:10
-	text : "Job 5 : DHT11 to PyQt5 Via MQTT" 
+	text : "Job 6 : DHT11 to PyQt5 Via MQTT" 
 	color : "white"
 	font.pixelSize : 20
 	}
